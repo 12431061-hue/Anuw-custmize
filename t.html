@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>カスタマイズTシャツ</title>
+<style>
+:root {
+  color-scheme: light;
+  font-family: "Helvetica Neue World", "Helvetica Neue", "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", sans-serif;
+  font-weight: 300;
+  color: #131212;
+  background: #ffffff;
+  font-size: 16px;
+}
+
+</style>
+<style>
+* { box-sizing: border-box; }
+html, body { min-height: 100%; margin: 0; padding: 0; background: #fff; color: #121212; }
+.page-shell { display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, 0.5fr); gap: 0; max-width: 1440px; min-height: 100vh; margin: 0 auto; padding: 24px; align-items: center; background: #fff; }
+.preview-panel, .controls-panel { min-width: 0; background: #fff; border-radius: 0; box-shadow: none; }.preview-panel { padding: 32px; }.controls-panel { position: relative; overflow: hidden; padding: 42px clamp(18px, 2.8vw, 34px); }.preview-wrapper { display: grid; gap: 24px; }.shirt-frame { position: relative; padding: 24px; background: #fff; border: 0; user-select: none; }.shirt-svg { display: block; width: 100%; height: min(66vh, 620px); max-width: 600px; margin: 0 auto; touch-action: none; }.hint-text { font-size: 14px; color: #555; }
+.tshirt-corner { position: absolute !important; z-index: 2 !important; display: block !important; width: 13px !important; height: 13px !important; background: #131212 !important; }.tshirt-corner-top-left { top: 17px !important; left: 17px !important; }.tshirt-corner-top-right { top: 17px !important; right: 17px !important; }.tshirt-corner-bottom-left { bottom: 17px !important; left: 17px !important; }.tshirt-corner-bottom-right { right: 17px !important; bottom: 17px !important; }
+.controls-header { max-width: 280px; margin-bottom: 22px; }.controls-header h1 { margin: 0 0 8px; font-size: 29px; font-weight: 700; letter-spacing: 0; }.controls-header p { margin: 0; font-size: 11px; color: #555; line-height: 1.6; }.control-list { display: grid; gap: 17px; }.control-item { position: relative; display: grid; gap: 11px; padding-left: 14px; }.control-item::before { position: absolute; top: 10px; left: 0; width: 6px; height: 6px; background: #131212; content: ""; }.control-meta { display: flex; align-items: center; justify-content: space-between; gap: 11px; }.control-meta span, .control-meta label { font-size: 13px; font-weight: 700; }.control-value { width: 52px; padding: 2px 0; border: 0; border-bottom: 1px solid #131212; border-radius: 0; background: transparent; color: #111; font: inherit; font-weight: 800; text-align: right; }.control-value:focus-visible, .link-button:focus-visible { outline: 2px solid #131212; outline-offset: 3px; }.control-track, .control-range { height: 14px; }.control-range { width: 100%; margin: 0; appearance: none; background: transparent; cursor: pointer; }.control-range::-webkit-slider-runnable-track, .control-range::-moz-range-track { height: 1px; background: #231815; }.control-range::-webkit-slider-thumb { width: 12px; height: 12px; margin-top: -5px; appearance: none; border: 0; border-radius: 50%; background: #131212; }.control-range::-moz-range-thumb { width: 12px; height: 12px; border: 0; border-radius: 50%; background: #131212; }
+.link-control { display: flex; align-items: center; gap: 8px; padding: 8px 0; border-top: 1px solid #dededb; border-bottom: 1px solid #dededb; }.link-control span { font-size: 13px; font-weight: 300; }.link-button { display: grid; width: 24px; height: 24px; padding: 5px; border: 1px solid #131212; border-radius: 0; background: #fff; cursor: pointer; place-items: center; }.link-button img { display: block; width: 100%; height: 100%; object-fit: contain; }.link-button[aria-pressed="true"] { background: #131212; }.link-button[aria-pressed="true"] img { filter: invert(1); }.handle { cursor: grab; vector-effect: non-scaling-stroke; }.handle:active { cursor: grabbing; }.measure-label { font-family: "Helvetica Neue World", "Helvetica Neue", sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0; }
+@media (hover: none) and (pointer: coarse) { .page-shell { grid-template-columns: 1fr; grid-template-rows: minmax(0, 57svh) auto; min-height: 100svh; gap: 8px; padding: 8px 12px; align-items: stretch; }.preview-panel { padding: 0; }.preview-wrapper, .shirt-frame { height: 100%; }.shirt-frame { padding: 0; }.shirt-svg { height: 100%; }.hint-text, .controls-header, .tshirt-corner { display: none !important; }.controls-panel { padding: 10px 12px; }.control-list { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 18px; row-gap: 10px; }.link-control { grid-column: 1 / -1; padding: 2px 0; }.control-item { gap: 6px; padding-left: 12px; }.control-item::before { top: 9px; width: 6px; height: 6px; }.control-meta { gap: 6px; }.control-meta span, .control-meta label { font-size: 14px; }.control-value { width: 58px; }.control-track, .control-range { height: 16px; } }
+@media (hover: none) and (pointer: coarse) and (max-width: 640px) { .page-shell { grid-template-rows: minmax(0, 56svh) auto; } }
+</style>
+<style>
+html, body, .page-shell, .preview-panel, .controls-panel, .shirt-frame {
+  background: #fff !important;
+}
+
+.link-button {
+  width: 36px;
+  height: 24px;
+  padding: 0;
+  background: #fff !important;
+}
+
+.link-button img,
+.link-button[aria-pressed="true"] img {
+  width: 28px;
+  height: auto;
+  filter: none;
+}
+
+.link-button[aria-pressed="false"] {
+  opacity: .35;
+}
+</style>
+<style>
+@media (hover: hover) and (pointer: fine) {
+  .page-shell {
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+    width: 100%;
+    max-width: none;
+    min-height: 100vh;
+    padding: 0;
+  }
+
+  .preview-panel {
+    padding: 12px;
+  }
+
+  .preview-wrapper {
+    gap: 4px;
+  }
+
+  .shirt-frame {
+    height: calc(100vh - 24px);
+    padding: 16px;
+  }
+
+  .shirt-svg {
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .controls-panel {
+    padding: 48px 44px;
+  }
+
+  .controls-header {
+    margin-bottom: 30px;
+  }
+
+  .controls-header,
+  .control-list {
+    width: 100%;
+    max-width: none;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .tshirt-corner-bottom-left,
+  .tshirt-corner-bottom-right {
+    bottom: 6px;
+  }
+
+  .controls-header h1 {
+    font-size: 30px;
+  }
+
+  .controls-header p,
+  .control-meta span,
+  .control-meta label,
+  .link-control span {
+    font-size: 14px;
+  }
+
+  .control-list {
+    gap: 24px;
+  }
+
+  .control-item {
+    gap: 14px;
+    padding-left: 18px;
+  }
+
+  .control-item::before {
+    top: 10px;
+    width: 7px;
+    height: 7px;
+  }
+
+  .control-value {
+    width: 60px;
+  }
+
+  .control-track,
+  .control-range {
+    height: 18px;
+  }
+
+  .control-range::-webkit-slider-thumb {
+    width: 14px;
+    height: 14px;
+    margin-top: -6px;
+  }
+
+  .control-range::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+  }
+
+  .link-button {
+    width: 36px;
+    height: 24px;
+  }
+
+  .link-button img,
+  .link-button[aria-pressed="true"] img {
+    width: 28px;
+  }
+}
+
+.control-range::-webkit-slider-runnable-track {
+  height: 1px;
+  background: #231815;
+}
+
+.control-range::-moz-range-track {
+  height: 1px;
+  background: #231815;
+}
+
+.control-range {
+  background: linear-gradient(#231815, #231815) center / 100% 1px no-repeat;
+}
+
+.controls-header h1 {
+  letter-spacing: .025em;
+}
+</style>
+<!--
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #ffffff;
+  color: #121212;
+}
+
+.page-shell {
+  max-width: 1440px;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.72fr);
+  gap: 24px;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 0.5fr);
+  gap: 0;
+}
+
+.preview-panel,
+.controls-panel {
+  padding: 42px clamp(18px, 2.8vw, 34px);
+  border-radius: 0;
+  width: 13px;
+  height: 13px;
+}
+  top: 17px;
+  left: 17px;
+  padding: 60px clamp(24px, 4vw, 48px);
+  top: 17px;
+  right: 17px;
+.preview-wrapper {
+  bottom: 17px;
+  left: 17px;
+}
+  bottom: 17px;
+  right: 17px;
+  font-size: 22px;
+  letter-spacing: 0.08em;
+  margin-bottom: 22px;
+}
+
+  font-size: 29px;
+  position: relative;
+  padding: 24px;
+  font-size: 11px;
+  background: #ffffff;
+  border: 0;
+  gap: 17px;
+}
+
+  gap: 11px;
+  width: 100%;
+  padding-left: 14px;
+  display: block;
+  top: 10px;
+  width: 6px;
+  height: 6px;
+}
+  gap: 11px;
+.shirt-frame {
+  font-size: 13px;
+}
+  font-size: 13px;
+.control-item {
+  width: 52px;
+  gap: 16px;
+  height: 14px;
+  padding-left: 20px;
+  height: 14px;
+
+  width: 12px;
+  height: 12px;
+  margin-top: -5px;
+  left: 0;
+  width: 12px;
+  height: 12px;
+  height: 8px;
+  gap: 8px;
+  padding: 8px 0;
+
+  width: 24px;
+  height: 24px;
+  padding: 5px;
+  position: relative;
+  overflow: hidden;
+}
+
+.control-dot {
+  position: absolute;
+  top: 50%;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #131212;
+  transform: translate(-50%, -50%);
+}
+
+.hint-text {
+  font-size: 14px;
+  color: #555;
+}
+
+.controls-panel {
+  position: relative;
+  overflow: hidden;
+}
+
+.corner {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  background: #131212;
+}
+
+.corner-top-left {
+  top: 24px;
+  left: 24px;
+}
+
+.corner-top-right {
+  top: 24px;
+  right: 24px;
+}
+
+.corner-bottom-left {
+  bottom: 24px;
+  left: 24px;
+}
+
+.corner-bottom-right {
+  bottom: 24px;
+  right: 24px;
+}
+
+.controls-header {
+  max-width: 400px;
+  margin-bottom: 32px;
+}
+
+.controls-header h1 {
+  margin: 0 0 12px;
+  font-size: 42px;
+  letter-spacing: -0.04em;
+}
+
+.controls-header p {
+  margin: 0;
+  color: #555;
+  line-height: 1.7;
+}
+
+.control-list {
+  display: grid;
+  gap: 24px;
+}
+
+.control-item {
+  display: grid;
+  gap: 16px;
+}
+
+.control-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.control-meta span {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.control-meta strong {
+  color: #111;
+  font-size: 18px;
+}
+
+.control-meta label {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.control-value {
+  width: 72px;
+  border: 0;
+  border-bottom: 1px solid #131212;
+  border-radius: 0;
+  padding: 2px 0;
+  background: transparent;
+  color: #111;
+  font: inherit;
+  font-weight: 800;
+  text-align: right;
+}
+
+.control-value:focus-visible {
+  outline: 2px solid #131212;
+  outline-offset: 3px;
+}
+
+.control-track {
+  height: 20px;
+  position: relative;
+}
+
+.control-range {
+  appearance: none;
+  width: 100%;
+  height: 20px;
+  margin: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.control-range::-webkit-slider-runnable-track {
+  height: 1px;
+  background: #231815;
+}
+
+.control-range::-webkit-slider-thumb {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  margin-top: -7px;
+  border: 0;
+  border-radius: 50%;
+  background: #131212;
+}
+
+.control-range::-moz-range-track {
+  height: 1px;
+  background: #231815;
+}
+
+.control-range::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border: 0;
+  border-radius: 50%;
+  background: #131212;
+}
+
+.link-control {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  padding: 12px 0;
+  border-top: 1px solid #dededb;
+  border-bottom: 1px solid #dededb;
+  font-weight: 700;
+}
+
+.link-control span {
+  font-weight: 300;
+}
+
+.link-button {
+  width: 32px;
+  height: 32px;
+  border: 1px solid #131212;
+  border-radius: 0;
+  padding: 7px;
+  background: #fff;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+
+.link-button img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+}
+
+.link-button[aria-pressed="true"] {
+  background: #131212;
+}
+
+.link-button[aria-pressed="true"] img {
+  filter: invert(1);
+}
+
+.link-button:focus-visible {
+  outline: 2px solid #131212;
+  outline-offset: 3px;
+}
+
+.handle {
+  cursor: grab;
+  vector-effect: non-scaling-stroke;
+}
+
+.measure-label {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 12px;
+  letter-spacing: 0;
+  font-weight: 600;
+}
+
+.handle:active {
+  cursor: grabbing;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .page-shell {
+    grid-template-columns: 1fr;
+    grid-template-rows: minmax(0, 57svh) auto;
+    min-height: 100svh;
+    gap: 8px;
+    padding: 8px 12px;
+    align-items: stretch;
+  }
+
+  .preview-panel {
+    padding: 0;
+  }
+
+  .preview-wrapper,
+  .shirt-frame {
+    height: 100%;
+  }
+
+  .shirt-frame {
+    padding: 0;
+  }
+
+  .shirt-svg {
+    height: 100%;
+  }
+
+  .hint-text,
+  .controls-header,
+  .corner {
+    display: none;
+  }
+
+  .controls-panel {
+    padding: 10px 12px;
+  }
+
+  .control-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 18px;
+    row-gap: 10px;
+  }
+
+  .link-control {
+    grid-column: 1 / -1;
+    padding: 2px 0;
+  }
+
+  .control-item {
+    gap: 6px;
+    padding-left: 12px;
+  }
+
+  .control-item::before {
+    top: 9px;
+    width: 6px;
+    height: 6px;
+  }
+
+  .control-meta {
+    gap: 6px;
+  }
+
+  .control-meta span,
+  .control-meta label {
+    font-size: 14px;
+  }
+
+  .control-value {
+    width: 58px;
+  }
+
+  .control-track,
+  .control-range {
+    height: 16px;
+  }
+}
+
+@media (hover: none) and (pointer: coarse) and (max-width: 640px) {
+  .page-shell {
+    grid-template-rows: minmax(0, 56svh) auto;
+  }
+}
+
+</head>
+-->
+</head>
+<body>
+  <main class="page-shell">
+    <section class="preview-panel">
+      <div class="preview-wrapper">
+        <div class="shirt-frame" aria-label="Tシャツプレビュー">
+          <svg class="shirt-svg" viewBox="0 150 595.28 570" role="img" aria-labelledby="shirtTitle">
+            <title id="shirtTitle">Tシャツのカスタマイズプレビュー</title>
+            <defs>
+              <pattern id="gridPattern" width="24" height="24" patternUnits="userSpaceOnUse">
+                <path d="M 24 0 L 0 0 0 24" fill="none" stroke="#e4e4e1" stroke-width="1" />
+              </pattern>
+              <clipPath id="shirt-clip">
+                <path id="shirt-clip-path" d="M344.74,196.94l95.28,22.62,130.24,57.24-38.73,88.43-80.54-9.25-27.11,156.97,7.63,159.04H151.07s7.63-159.04,7.63-159.04l-27.11-156.97-80.54,9.25-38.73-88.43,130.24-57.24,95.28-22.62s53.57,17.81,106.89,0Z" />
+              </clipPath>
+            </defs>
+            <rect id="grid-background" x="0" y="150" width="595.28" height="570" fill="url(#gridPattern)" />
+            <g class="shirt-lines" clip-path="url(#shirt-clip)">
+              <path id="shirt-path" d="M344.74,196.94l95.28,22.62,130.24,57.24-38.73,88.43-80.54-9.25-27.11,156.97,7.63,159.04H151.07s7.63-159.04,7.63-159.04l-27.11-156.97-80.54,9.25-38.73-88.43,130.24-57.24,95.28-22.62s53.57,17.81,106.89,0Z" fill="none" stroke="#070001" stroke-width="0.75" stroke-miterlimit="10" />
+              <path id="shirt-neck-left" d="M236.74,196.94s1.89,74.36,54.64,73.96" fill="none" stroke="#070001" stroke-width="0.75" stroke-miterlimit="10" />
+              <path id="shirt-neck-right" d="M346.03,196.94s-1.89,74.36-54.64,73.96" fill="none" stroke="#070001" stroke-width="0.75" stroke-miterlimit="10" />
+              <path id="shirt-neck-inner-left" d="M227.06,199.47s2.23,82.33,64.65,81.89" fill="none" stroke="#070001" stroke-width="0.5" stroke-miterlimit="10" />
+              <path id="shirt-neck-inner-right" d="M356.37,199.47s-2.23,82.33-64.65,81.89" fill="none" stroke="#070001" stroke-width="0.5" stroke-miterlimit="10" />
+              <path id="shirt-stitch-top" d="M238,209.48s.19.06.57.18M239.51,209.94c8.48,2.49,51.56,13.64,103.35-.18M343.36,209.63c.19-.05.39-.1.58-.16" fill="none" stroke="#231815" stroke-width="0.75" stroke-dasharray="1.19 .99" stroke-miterlimit="10" opacity=".5" />
+              <path id="shirt-stitch-bottom" d="M238.74,214.7s.19.06.57.18M240.26,215.16c8.48,2.49,51.56,13.64,103.35-.18M344.1,214.85c.19-.05.39-.1.58-.16" fill="none" stroke="#231815" stroke-width="0.75" stroke-dasharray="1.19 .99" stroke-miterlimit="10" opacity=".5" />
+              <path id="shirt-sleeve-seam-left" d="M142.56,219.56s4.07,110.78-10.97,136.41" fill="none" stroke="#070001" stroke-width="0.75" stroke-miterlimit="10" />
+              <path id="shirt-sleeve-seam-right" d="M440.45,219.56s-4.07,110.78,10.97,136.41" fill="none" stroke="#070001" stroke-width="0.75" stroke-miterlimit="10" />
+            </g>
+            <g id="handles" class="handles">
+              <circle class="handle" id="handle-shoulder-left" r="7" fill="#231815" data-handle="shoulder-left" />
+              <circle class="handle" id="handle-shoulder-right" r="7" fill="#231815" data-handle="shoulder-right" />
+              <circle class="handle" id="handle-sleeve-left" r="7" fill="#231815" data-handle="sleeve-left" />
+              <circle class="handle" id="handle-sleeve-right" r="7" fill="#231815" data-handle="sleeve-right" />
+              <circle class="handle" id="handle-body-left" r="7" fill="#231815" data-handle="body-left" />
+              <circle class="handle" id="handle-body-right" r="7" fill="#231815" data-handle="body-right" />
+              <circle class="handle" id="handle-hem" r="7" fill="#231815" data-handle="hem" />
+            </g>
+            <g class="measurements" fill="none" stroke="#231815" stroke-width="0.75" stroke-miterlimit="10" pointer-events="none">
+              <line id="measure-shoulder-line" />
+              <line id="measure-body-line" />
+              <line id="measure-length-line" />
+              <line id="measure-sleeve-line" />
+              <g id="measure-points" fill="#231815" stroke="none">
+                <circle id="measure-shoulder-start" r="4" /><circle id="measure-shoulder-end" r="4" />
+                <circle id="measure-body-start" r="4" /><circle id="measure-body-end" r="4" />
+                <circle id="measure-length-start" r="4" /><circle id="measure-length-end" r="4" />
+                <circle id="measure-sleeve-start" r="4" /><circle id="measure-sleeve-end" r="4" />
+              </g>
+              <text id="measure-shoulder-label" class="measure-label" fill="#231815" stroke="none">460 mm</text>
+              <text id="measure-body-label" class="measure-label" fill="#231815" stroke="none">520 mm</text>
+              <text id="measure-length-label" class="measure-label" fill="#231815" stroke="none">700 mm</text>
+              <text id="measure-sleeve-label" class="measure-label" fill="#231815" stroke="none">220 mm</text>
+            </g>
+          </svg>
+        </div>
+        <div class="hint-text">点をドラッグしてサイズを調整してください。PCはマウス、スマホはタッチ対応。</div>
+      </div>
+    </section>
+
+    <aside class="controls-panel">
+      <svg class="tshirt-corner tshirt-corner-top-left" viewBox="0 0 13 13" aria-hidden="true" style="position:absolute!important;display:block!important;z-index:20!important;width:13px!important;height:13px!important;background:#131212!important;fill:#131212!important"><rect width="13" height="13" fill="#131212" /></svg>
+      <svg class="tshirt-corner tshirt-corner-top-right" viewBox="0 0 13 13" aria-hidden="true" style="position:absolute!important;display:block!important;z-index:20!important;width:13px!important;height:13px!important;background:#131212!important;fill:#131212!important"><rect width="13" height="13" fill="#131212" /></svg>
+      <svg class="tshirt-corner tshirt-corner-bottom-left" viewBox="0 0 13 13" aria-hidden="true" style="position:absolute!important;display:block!important;z-index:20!important;width:13px!important;height:13px!important;background:#131212!important;fill:#131212!important"><rect width="13" height="13" fill="#131212" /></svg>
+      <svg class="tshirt-corner tshirt-corner-bottom-right" viewBox="0 0 13 13" aria-hidden="true" style="position:absolute!important;display:block!important;z-index:20!important;width:13px!important;height:13px!important;background:#131212!important;fill:#131212!important"><rect width="13" height="13" fill="#131212" /></svg>
+
+      <div class="controls-header">
+        <h1>CUSTOMIZE</h1>
+        <p>それぞれの項目をドラッグして、お好みのTシャツを作成してください。</p>
+      </div>
+
+      <div class="control-list">
+        <div class="link-control">
+          <button id="toggle-link" class="link-button" type="button" aria-pressed="true" aria-label="身幅と肩幅の連動を切り替える">
+            <img src="data:image/png;base64,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" alt="" />
+          </button>
+          <span>身幅、肩幅を連動させる</span>
+        </div>
+        <div class="control-item" data-control="length">
+          <div class="control-meta">
+            <span>着丈</span>
+            <label><input class="control-value" id="value-length" type="number" min="400" max="5000" step="10" value="700" aria-label="着丈" /> mm</label>
+          </div>
+          <div class="control-track">
+            <input class="control-range" id="range-length" type="range" min="0" max="1000" step="1" value="250" aria-label="着丈スライダー" />
+          </div>
+        </div>
+
+        <div class="control-item" data-control="body">
+          <div class="control-meta">
+            <span>身幅</span>
+            <label><input class="control-value" id="value-body" type="number" min="300" max="5000" step="10" value="520" aria-label="身幅" /> mm</label>
+          </div>
+          <div class="control-track">
+            <input class="control-range" id="range-body" type="range" min="0" max="1000" step="1" value="250" aria-label="身幅スライダー" />
+          </div>
+        </div>
+
+        <div class="control-item" data-control="shoulder">
+          <div class="control-meta">
+            <span>肩幅</span>
+            <label><input class="control-value" id="value-shoulder" type="number" min="340" max="5000" step="10" value="460" aria-label="肩幅" /> mm</label>
+          </div>
+          <div class="control-track">
+            <input class="control-range" id="range-shoulder" type="range" min="0" max="1000" step="1" value="250" aria-label="肩幅スライダー" />
+          </div>
+        </div>
+
+        <div class="control-item" data-control="sleeve">
+          <div class="control-meta">
+            <span>袖丈</span>
+            <label><input class="control-value" id="value-sleeve" type="number" min="0" max="5000" step="10" value="220" aria-label="袖丈" /> mm</label>
+          </div>
+          <div class="control-track">
+            <input class="control-range" id="range-sleeve" type="range" min="0" max="1000" step="1" value="250" aria-label="袖丈スライダー" />
+          </div>
+        </div>
+      </div>
+    </aside>
+  </main>
+<script>
+const state = {
+  shoulder: 460,
+  sleeve: 220,
+  body: 520,
+  length: 700,
+  linked: true,
+  min: { shoulder: 340, sleeve: 0, body: 300, length: 400 },
+  max: { shoulder: 5000, sleeve: 5000, body: 5000, length: 5000 },
+};
+
+const svg = document.querySelector('.shirt-svg');
+const grid = document.getElementById('grid-background');
+const pathEl = document.getElementById('shirt-path');
+const clipPathEl = document.getElementById('shirt-clip-path');
+const paths = {
+  neckLeft: document.getElementById('shirt-neck-left'),
+  neckRight: document.getElementById('shirt-neck-right'),
+  neckInnerLeft: document.getElementById('shirt-neck-inner-left'),
+  neckInnerRight: document.getElementById('shirt-neck-inner-right'),
+  stitchTop: document.getElementById('shirt-stitch-top'),
+  stitchBottom: document.getElementById('shirt-stitch-bottom'),
+  sleeveSeamLeft: document.getElementById('shirt-sleeve-seam-left'),
+  sleeveSeamRight: document.getElementById('shirt-sleeve-seam-right'),
+};
+const values = Object.fromEntries(['shoulder', 'sleeve', 'body', 'length'].map((key) => [key, document.getElementById(`value-${key}`)]));
+const ranges = Object.fromEntries(['shoulder', 'sleeve', 'body', 'length'].map((key) => [key, document.getElementById(`range-${key}`)]));
+const handles = {
+  shoulderLeft: document.getElementById('handle-shoulder-left'),
+  shoulderRight: document.getElementById('handle-shoulder-right'),
+  sleeveLeft: document.getElementById('handle-sleeve-left'),
+  sleeveRight: document.getElementById('handle-sleeve-right'),
+  bodyLeft: document.getElementById('handle-body-left'),
+  bodyRight: document.getElementById('handle-body-right'),
+  hem: document.getElementById('handle-hem'),
+};
+const measurements = {
+  shoulderLine: document.getElementById('measure-shoulder-line'),
+  bodyLine: document.getElementById('measure-body-line'),
+  lengthLine: document.getElementById('measure-length-line'),
+  sleeveLine: document.getElementById('measure-sleeve-line'),
+  shoulderLabel: document.getElementById('measure-shoulder-label'),
+  bodyLabel: document.getElementById('measure-body-label'),
+  lengthLabel: document.getElementById('measure-length-label'),
+  sleeveLabel: document.getElementById('measure-sleeve-label'),
+  shoulderStart: document.getElementById('measure-shoulder-start'),
+  shoulderEnd: document.getElementById('measure-shoulder-end'),
+  bodyStart: document.getElementById('measure-body-start'),
+  bodyEnd: document.getElementById('measure-body-end'),
+  lengthStart: document.getElementById('measure-length-start'),
+  lengthEnd: document.getElementById('measure-length-end'),
+  sleeveStart: document.getElementById('measure-sleeve-start'),
+  sleeveEnd: document.getElementById('measure-sleeve-end'),
+};
+const linkButton = document.getElementById('toggle-link');
+const sourcePath = 'M344.74,196.94l95.28,22.62,130.24,57.24-38.73,88.43-80.54-9.25-27.11,156.97,7.63,159.04H151.07s7.63-159.04,7.63-159.04l-27.11-156.97-80.54,9.25-38.73-88.43,130.24-57.24,95.28-22.62s53.57,17.81,106.89,0Z';
+const baseSize = { length: 700, body: 520, shoulder: 460, sleeve: 220 };
+const collar = { left: 227.06, right: 356.37 };
+const geometryScale = { shoulder: 0.323, body: 0.255, sleeveY: 0.32 * 0.22, hemY: (671.99 - 196.94) / 700 };
+const sliderMain = { length: 800, body: 600, shoulder: 600, sleeve: 300 };
+const negativeShare = 0.25;
+const mainShare = 2 / 3;
+const mainEnd = negativeShare + mainShare;
+
+let activeHandle = null;
+let pointerId = null;
+let startPoint = null;
+let dragStartValues = null;
+
+function clamp(value, min, max) {
+  return Math.min(Math.max(value, min), max);
+}
+
+function roundStep(value) {
+  return Math.round(value / 10) * 10;
+}
+
+function sliderToValue(key, position) {
+  const ratio = Number(position) / 1000;
+  const main = sliderMain[key];
+  if (ratio <= negativeShare) {
+    return roundStep(state.min[key] + (baseSize[key] - state.min[key]) * (ratio / negativeShare));
+  }
+  if (ratio <= mainEnd) {
+    return roundStep(baseSize[key] + ((ratio - negativeShare) / mainShare) * main);
+  }
+  const tailRatio = (ratio - mainEnd) / (1 - mainEnd);
+  return roundStep(baseSize[key] + main + (state.max[key] - baseSize[key] - main) * tailRatio * tailRatio);
+}
+
+function valueToSlider(key, value) {
+  const main = sliderMain[key];
+  if (value <= baseSize[key]) {
+    return Math.round(((value - state.min[key]) / (baseSize[key] - state.min[key])) * negativeShare * 1000);
+  }
+  if (value <= baseSize[key] + main) {
+    return Math.round((negativeShare + ((value - baseSize[key]) / main) * mainShare) * 1000);
+  }
+  const tailRatio = Math.sqrt((value - baseSize[key] - main) / (state.max[key] - baseSize[key] - main));
+  return Math.round((mainEnd + (1 - mainEnd) * tailRatio) * 1000);
+}
+
+function getGeometry() {
+  const shoulderOffset = (state.shoulder - 460) * 0.323;
+  const sleeveOffset = (state.sleeve - 220) * 0.32;
+  const bodyOffset = (state.body - 520) * 0.255;
+  const lengthRatio = state.length / 700;
+  const xLeftShoulder = 142.56 - shoulderOffset;
+  const xRightShoulder = 440.02 + shoulderOffset;
+  const xLeftBody = 158.7 - bodyOffset;
+  const xRightBody = 423.88 + bodyOffset;
+  const xLeftHem = 151.07 - bodyOffset;
+  const xRightHem = 431.51 + bodyOffset;
+  const yBody = 196.94 + (512.95 - 196.94) * lengthRatio;
+  const yHem = 196.94 + (671.99 - 196.94) * lengthRatio;
+  const hasSleeve = state.sleeve > 0;
+  // 肩幅の変化には袖全体を同量追従させ、袖丈の相対長を保つ。
+  const leftSleeveTop = hasSleeve ? { x: 12.32 - shoulderOffset - sleeveOffset, y: 276.8 + sleeveOffset * 0.22 } : { x: xLeftBody, y: yBody };
+  const rightSleeveTop = hasSleeve ? { x: 570.26 + shoulderOffset + sleeveOffset, y: 276.8 + sleeveOffset * 0.22 } : { x: xRightBody, y: yBody };
+  const leftCuff = hasSleeve ? { x: 51.05 - shoulderOffset - sleeveOffset, y: 365.23 + sleeveOffset * 0.22 } : { x: xLeftBody, y: yBody };
+  const rightCuff = hasSleeve ? { x: 531.53 + shoulderOffset + sleeveOffset, y: 365.23 + sleeveOffset * 0.22 } : { x: xRightBody, y: yBody };
+  return { shoulderOffset, xLeftShoulder, xRightShoulder, xLeftBody, xRightBody, xLeftHem, xRightHem, yBody, yHem, leftSleeveTop, rightSleeveTop, leftCuff, rightCuff, hasSleeve };
+}
+
+function getLengthMinimum() {
+  const cuffBottom = 365.23 + (state.sleeve - baseSize.sleeve) * geometryScale.sleeveY;
+  const lengthForCuffClearance = ((cuffBottom + 14 - 196.94) / (512.95 - 196.94)) * baseSize.length;
+  return Math.ceil(Math.max(state.min.length, lengthForCuffClearance) / 10) * 10;
+}
+
+function enforceGarmentBounds() {
+  // The shoulder seam must always remain wider than the fixed double collar.
+  const minimumShoulder = Math.ceil(Math.max(
+    state.min.shoulder,
+    baseSize.shoulder + ((collar.right - collar.left + 28 - (440.02 - 142.56)) / (2 * geometryScale.shoulder)),
+  ) / 10) * 10;
+  state.shoulder = clamp(state.shoulder, minimumShoulder, state.max.shoulder);
+  state.sleeve = clamp(state.sleeve, state.min.sleeve, state.max.sleeve);
+  state.body = clamp(state.body, Math.max(state.min.body, state.shoulder * 0.72), state.max.body);
+  state.length = clamp(state.length, getLengthMinimum(), state.max.length);
+}
+
+function updateValues() {
+  Object.keys(values).forEach((key) => {
+    values[key].value = state[key];
+    ranges[key].value = valueToSlider(key, state[key]);
+  });
+}
+
+function setPathGeometry(g) {
+  const isSourceSize = state.shoulder === 460 && state.sleeve === 220 && state.body === 520 && state.length === 700;
+  // 襟、二重線、ステッチは支給SVGの形状を保つ。寸法変化の対象にしない。
+  paths.neckLeft.setAttribute('d', 'M236.74,196.94s1.89,74.36,54.64,73.96');
+  paths.neckRight.setAttribute('d', 'M346.03,196.94s-1.89,74.36-54.64,73.96');
+  paths.neckInnerLeft.setAttribute('d', 'M227.06,199.47s2.23,82.33,64.65,81.89');
+  paths.neckInnerRight.setAttribute('d', 'M356.37,199.47s-2.23,82.33-64.65,81.89');
+  paths.stitchTop.setAttribute('d', 'M238,209.48s.19.06.57.18M239.51,209.94c8.48,2.49,51.56,13.64,103.35-.18M343.36,209.63c.19-.05.39-.1.58-.16');
+  paths.stitchBottom.setAttribute('d', 'M238.74,214.7s.19.06.57.18M240.26,215.16c8.48,2.49,51.56,13.64,103.35-.18M344.1,214.85c.19-.05.39-.1.58-.16');
+  if (isSourceSize) {
+    pathEl.setAttribute('d', sourcePath);
+    clipPathEl.setAttribute('d', sourcePath);
+    paths.sleeveSeamLeft.setAttribute('d', 'M142.56,219.56s4.07,110.78-10.97,136.41');
+    paths.sleeveSeamRight.setAttribute('d', 'M440.45,219.56s-4.07,110.78,10.97,136.41');
+    return;
+  }
+
+  const outerPath = g.hasSleeve
+    ? `M 344.74 196.94 L ${g.xRightShoulder} 219.56 L ${g.rightSleeveTop.x} ${g.rightSleeveTop.y} L ${g.rightCuff.x} ${g.rightCuff.y} L ${g.xRightBody + 27.11} 355.98 L ${g.xRightBody} ${g.yBody} L ${g.xRightHem} ${g.yHem} H ${g.xLeftHem} L ${g.xLeftBody} ${g.yBody} L ${g.xLeftBody - 27.11} 355.98 L ${g.leftCuff.x} ${g.leftCuff.y} L ${g.leftSleeveTop.x} ${g.leftSleeveTop.y} L ${g.xLeftShoulder} 219.56 L 237.84 196.94 Q 291.41 214.75 344.74 196.94 Z`
+    : `M 344.74 196.94 L ${g.xRightShoulder} 219.56 L ${g.xRightBody} ${g.yBody} L ${g.xRightHem} ${g.yHem} H ${g.xLeftHem} L ${g.xLeftBody} ${g.yBody} L ${g.xLeftShoulder} 219.56 L 237.84 196.94 Q 291.41 214.75 344.74 196.94 Z`;
+  pathEl.setAttribute('d', outerPath);
+  clipPathEl.setAttribute('d', outerPath);
+  paths.sleeveSeamLeft.setAttribute('d', g.hasSleeve ? `M ${g.xLeftShoulder} 219.56 C ${g.xLeftShoulder + 4.07} 290 ${g.xLeftBody - 27.11} 335 ${g.xLeftBody - 27.11} 355.98` : '');
+  paths.sleeveSeamRight.setAttribute('d', g.hasSleeve ? `M ${g.xRightShoulder} 219.56 C ${g.xRightShoulder - 4.07} 290 ${g.xRightBody + 27.11} 335 ${g.xRightBody + 27.11} 355.98` : '');
+}
+
+function getHandlePositions(g) {
+  return {
+    shoulderLeft: { x: g.xLeftShoulder, y: 219.56 },
+    shoulderRight: { x: g.xRightShoulder, y: 219.56 },
+    sleeveLeft: g.leftSleeveTop,
+    sleeveRight: g.rightSleeveTop,
+    bodyLeft: { x: g.xLeftBody, y: g.yBody },
+    bodyRight: { x: g.xRightBody, y: g.yBody },
+    hem: { x: (g.xLeftHem + g.xRightHem) / 2, y: g.yHem },
+  };
+}
+
+function setHandlePositions(positions) {
+  Object.entries(positions).forEach(([key, point]) => {
+    handles[key].setAttribute('cx', point.x);
+    handles[key].setAttribute('cy', point.y);
+  });
+}
+
+function setLine(line, x1, y1, x2, y2) {
+  line.setAttribute('x1', x1);
+  line.setAttribute('y1', y1);
+  line.setAttribute('x2', x2);
+  line.setAttribute('y2', y2);
+}
+
+function setPoint(point, x, y) {
+  point.setAttribute('cx', x);
+  point.setAttribute('cy', y);
+}
+
+function setLabel(label, text, x, y, anchor = 'start') {
+  label.textContent = text;
+  label.setAttribute('x', x);
+  label.setAttribute('y', y);
+  label.setAttribute('text-anchor', anchor);
+}
+
+function updateMeasurements(g) {
+  const shoulderY = 175.2;
+  const sleeveMidX = (g.xRightShoulder + g.rightSleeveTop.x) / 2;
+  const sleeveMidY = (219.56 + g.rightSleeveTop.y) / 2;
+  const lengthX = (g.xLeftBody + g.xRightBody) / 2;
+  const bodyLabelX = g.xLeftBody + (g.xRightBody - g.xLeftBody) * 0.25;
+
+  setLine(measurements.shoulderLine, g.xLeftShoulder, shoulderY, g.xRightShoulder, shoulderY);
+  setLine(measurements.bodyLine, g.xLeftBody, g.yBody, g.xRightBody, g.yBody);
+  setLine(measurements.lengthLine, lengthX, 196.94, lengthX, g.yHem);
+  setLine(measurements.sleeveLine, g.hasSleeve ? g.xRightShoulder : g.xLeftBody, g.hasSleeve ? 219.56 : g.yBody, g.hasSleeve ? g.rightSleeveTop.x : g.xRightBody, g.hasSleeve ? g.rightSleeveTop.y : g.yBody);
+
+  setPoint(measurements.shoulderStart, g.xLeftShoulder, shoulderY);
+  setPoint(measurements.shoulderEnd, g.xRightShoulder, shoulderY);
+  setPoint(measurements.bodyStart, g.xLeftBody, g.yBody);
+  setPoint(measurements.bodyEnd, g.xRightBody, g.yBody);
+  setPoint(measurements.lengthStart, lengthX, 196.94);
+  setPoint(measurements.lengthEnd, lengthX, g.yHem);
+  setPoint(measurements.sleeveStart, g.hasSleeve ? g.xRightShoulder : g.xLeftBody, g.hasSleeve ? 219.56 : g.yBody);
+  setPoint(measurements.sleeveEnd, g.hasSleeve ? g.rightSleeveTop.x : g.xRightBody, g.hasSleeve ? g.rightSleeveTop.y : g.yBody);
+
+  setLabel(measurements.shoulderLabel, `${state.shoulder} mm`, (g.xLeftShoulder + g.xRightShoulder) / 2, shoulderY - 8, 'middle');
+  setLabel(measurements.bodyLabel, `${state.body} mm`, bodyLabelX, g.yBody - 8, 'middle');
+  setLabel(measurements.lengthLabel, `${state.length} mm`, lengthX + 8, (196.94 + g.yHem) / 2, 'start');
+  setLabel(measurements.sleeveLabel, `${state.sleeve} mm`, g.hasSleeve ? sleeveMidX + 8 : g.xRightBody - 8, g.hasSleeve ? sleeveMidY - 6 : g.yBody + 16, g.hasSleeve ? 'start' : 'end');
+}
+
+function fitSvg(g) {
+  const minX = Math.min(g.leftSleeveTop.x, g.leftCuff.x, g.xLeftHem, g.xLeftShoulder) - 42;
+  const maxX = Math.max(g.rightSleeveTop.x, g.rightCuff.x, g.xRightHem, g.xRightShoulder) + 42;
+  const minY = 150;
+  const maxY = Math.max(720, g.yHem + 42);
+  svg.setAttribute('viewBox', `${minX} ${minY} ${maxX - minX} ${maxY - minY}`);
+  grid.setAttribute('x', minX);
+  grid.setAttribute('y', minY);
+  grid.setAttribute('width', maxX - minX);
+  grid.setAttribute('height', maxY - minY);
+}
+
+function updateUI() {
+  enforceGarmentBounds();
+  const geometry = getGeometry();
+  updateValues();
+  setPathGeometry(geometry);
+  fitSvg(geometry);
+  setHandlePositions(getHandlePositions(geometry));
+  updateMeasurements(geometry);
+}
+
+function setDimension(key, value) {
+  const nextValue = roundStep(clamp(value, state.min[key], state.max[key]));
+  const previousValue = state[key];
+  state[key] = nextValue;
+  if (state.linked && (key === 'body' || key === 'shoulder')) {
+    const pairedKey = key === 'body' ? 'shoulder' : 'body';
+    state[pairedKey] = roundStep(clamp(state[pairedKey] + nextValue - previousValue, state.min[pairedKey], state.max[pairedKey]));
+  }
+  enforceGarmentBounds();
+  updateUI();
+}
+
+function getSvgPoint(event) {
+  const matrix = svg.getScreenCTM();
+  if (!matrix) return { x: event.clientX, y: event.clientY };
+  const point = new DOMPoint(event.clientX, event.clientY).matrixTransform(matrix.inverse());
+  return { x: point.x, y: point.y };
+}
+
+function handlePointerDown(event) {
+  if (event.pointerType !== 'mouse' && event.pointerType !== 'touch') return;
+  const target = event.target.closest('.handle');
+  if (!target) return;
+  event.preventDefault();
+  try {
+    svg.setPointerCapture(event.pointerId);
+  } catch (error) {
+    // Pointer Captureがない環境ではSVGイベントを追跡する。
+  }
+  activeHandle = target.dataset.handle;
+  pointerId = event.pointerId;
+  startPoint = getSvgPoint(event);
+  dragStartValues = { shoulder: state.shoulder, sleeve: state.sleeve, body: state.body, length: state.length };
+}
+
+function handlePointerMove(event) {
+  if (!activeHandle || event.pointerId !== pointerId) return;
+  event.preventDefault();
+  const point = getSvgPoint(event);
+  const dx = point.x - startPoint.x;
+  const dy = point.y - startPoint.y;
+  if (activeHandle === 'shoulder-left' || activeHandle === 'shoulder-right') {
+    setDimension('shoulder', dragStartValues.shoulder + (activeHandle === 'shoulder-left' ? -dx : dx) / geometryScale.shoulder);
+  } else if (activeHandle === 'sleeve-left' || activeHandle === 'sleeve-right') {
+    setDimension('sleeve', dragStartValues.sleeve + dy / geometryScale.sleeveY);
+  } else if (activeHandle === 'body-left' || activeHandle === 'body-right') {
+    setDimension('body', dragStartValues.body + (activeHandle === 'body-left' ? -dx : dx) / geometryScale.body);
+  } else if (activeHandle === 'hem') {
+    setDimension('length', dragStartValues.length + dy / geometryScale.hemY);
+  }
+
+  // Re-anchor after the viewBox changes so the next movement uses the new SVG scale.
+  startPoint = getSvgPoint(event);
+  dragStartValues = { shoulder: state.shoulder, sleeve: state.sleeve, body: state.body, length: state.length };
+}
+
+function handlePointerUp(event) {
+  if (event.pointerId !== pointerId) return;
+  activeHandle = null;
+  pointerId = null;
+  startPoint = null;
+  dragStartValues = null;
+  updateUI();
+}
+
+svg.addEventListener('pointerdown', handlePointerDown);
+svg.addEventListener('pointermove', handlePointerMove);
+svg.addEventListener('pointerup', handlePointerUp);
+svg.addEventListener('pointercancel', handlePointerUp);
+svg.addEventListener('lostpointercapture', handlePointerUp);
+
+Object.keys(ranges).forEach((key) => {
+  ranges[key].addEventListener('input', () => setDimension(key, sliderToValue(key, ranges[key].value)));
+  values[key].addEventListener('change', () => setDimension(key, Number(values[key].value)));
+});
+
+linkButton.addEventListener('click', () => {
+  state.linked = !state.linked;
+  linkButton.setAttribute('aria-pressed', String(state.linked));
+});
+
+updateUI();
+</script>
+</body>
+</html>
