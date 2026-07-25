@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>カスタマイズTシャツ</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="page-shell">
+    <section class="preview-panel">
+      <div class="preview-wrapper">
+        <div class="shirt-frame" aria-label="Tシャツプレビュー">
+          <svg class="shirt-svg" viewBox="0 150 595.28 570" role="img" aria-labelledby="shirtTitle">
+            <title id="shirtTitle">Tシャツのカスタマイズプレビュー</title>
+            <defs>
+              <pattern id="gridPattern" width="24" height="24" patternUnits="userSpaceOnUse">
+                <path d="M 24 0 L 0 0 0 24" fill="none" stroke="#e4e4e1" stroke-width="1" />
+              </pattern>
+              <clipPath id="shirt-clip">
+                <path id="shirt-clip-path" d="M344.74,196.94l95.28,22.62,130.24,57.24-38.73,88.43-80.54-9.25-27.11,156.97,7.63,159.04H151.07s7.63-159.04,7.63-159.04l-27.11-156.97-80.54,9.25-38.73-88.43,130.24-57.24,95.28-22.62s53.57,17.81,106.89,0Z" />
+              </clipPath>
+            </defs>
+            <rect id="grid-background" x="0" y="150" width="595.28" height="570" fill="url(#gridPattern)" />
+            <g class="shirt-lines" clip-path="url(#shirt-clip)">
+              <path id="shirt-path" d="M344.74,196.94l95.28,22.62,130.24,57.24-38.73,88.43-80.54-9.25-27.11,156.97,7.63,159.04H151.07s7.63-159.04,7.63-159.04l-27.11-156.97-80.54,9.25-38.73-88.43,130.24-57.24,95.28-22.62s53.57,17.81,106.89,0Z" fill="none" stroke="#070001" stroke-width="0.75" stroke-miterlimit="10" />
+              <path id="shirt-neck-left" d="M236.74,196.94s1.89,74.36,54.64,73.96" fill="none" stroke="#070001" stroke-width="0.75" stroke-miterlimit="10" />
+              <path id="shirt-neck-right" d="M346.03,196.94s-1.89,74.36-54.64,73.96" fill="none" stroke="#070001" stroke-width="0.75" stroke-miterlimit="10" />
+              <path id="shirt-neck-inner-left" d="M227.06,199.47s2.23,82.33,64.65,81.89" fill="none" stroke="#070001" stroke-width="0.5" stroke-miterlimit="10" />
+              <path id="shirt-neck-inner-right" d="M356.37,199.47s-2.23,82.33-64.65,81.89" fill="none" stroke="#070001" stroke-width="0.5" stroke-miterlimit="10" />
+              <path id="shirt-stitch-top" d="M238,209.48s.19.06.57.18M239.51,209.94c8.48,2.49,51.56,13.64,103.35-.18M343.36,209.63c.19-.05.39-.1.58-.16" fill="none" stroke="#231815" stroke-width="0.75" stroke-dasharray="1.19 .99" stroke-miterlimit="10" opacity=".5" />
+              <path id="shirt-stitch-bottom" d="M238.74,214.7s.19.06.57.18M240.26,215.16c8.48,2.49,51.56,13.64,103.35-.18M344.1,214.85c.19-.05.39-.1.58-.16" fill="none" stroke="#231815" stroke-width="0.75" stroke-dasharray="1.19 .99" stroke-miterlimit="10" opacity=".5" />
+              <path id="shirt-sleeve-seam-left" d="M142.56,219.56s4.07,110.78-10.97,136.41" fill="none" stroke="#070001" stroke-width="0.75" stroke-miterlimit="10" />
+              <path id="shirt-sleeve-seam-right" d="M440.45,219.56s-4.07,110.78,10.97,136.41" fill="none" stroke="#070001" stroke-width="0.75" stroke-miterlimit="10" />
+            </g>
+            <g id="handles" class="handles">
+              <circle class="handle" id="handle-shoulder-left" r="7" fill="#231815" data-handle="shoulder-left" />
+              <circle class="handle" id="handle-shoulder-right" r="7" fill="#231815" data-handle="shoulder-right" />
+              <circle class="handle" id="handle-sleeve-left" r="7" fill="#231815" data-handle="sleeve-left" />
+              <circle class="handle" id="handle-sleeve-right" r="7" fill="#231815" data-handle="sleeve-right" />
+              <circle class="handle" id="handle-body-left" r="7" fill="#231815" data-handle="body-left" />
+              <circle class="handle" id="handle-body-right" r="7" fill="#231815" data-handle="body-right" />
+              <circle class="handle" id="handle-hem" r="7" fill="#231815" data-handle="hem" />
+            </g>
+            <g class="measurements" fill="none" stroke="#231815" stroke-width="0.75" stroke-miterlimit="10" pointer-events="none">
+              <line id="measure-shoulder-line" />
+              <line id="measure-body-line" />
+              <line id="measure-length-line" />
+              <line id="measure-sleeve-line" />
+              <g id="measure-points" fill="#231815" stroke="none">
+                <circle id="measure-shoulder-start" r="4" /><circle id="measure-shoulder-end" r="4" />
+                <circle id="measure-body-start" r="4" /><circle id="measure-body-end" r="4" />
+                <circle id="measure-length-start" r="4" /><circle id="measure-length-end" r="4" />
+                <circle id="measure-sleeve-start" r="4" /><circle id="measure-sleeve-end" r="4" />
+              </g>
+              <text id="measure-shoulder-label" class="measure-label" fill="#231815" stroke="none">460 mm</text>
+              <text id="measure-body-label" class="measure-label" fill="#231815" stroke="none">520 mm</text>
+              <text id="measure-length-label" class="measure-label" fill="#231815" stroke="none">700 mm</text>
+              <text id="measure-sleeve-label" class="measure-label" fill="#231815" stroke="none">220 mm</text>
+            </g>
+          </svg>
+        </div>
+        <div class="hint-text">点をドラッグしてサイズを調整してください。PCはマウス、スマホはタッチ対応。</div>
+      </div>
+    </section>
+
+    <aside class="controls-panel">
+      <div class="corner corner-top-left"></div>
+      <div class="corner corner-top-right"></div>
+      <div class="corner corner-bottom-left"></div>
+      <div class="corner corner-bottom-right"></div>
+
+      <div class="controls-header">
+        <h1>CUSTOMIZE</h1>
+        <p>それぞれの項目をドラッグして、お好みのTシャツを作成してください。</p>
+      </div>
+
+      <div class="control-list">
+        <div class="link-control">
+          <button id="toggle-link" class="link-button" type="button" aria-pressed="true" aria-label="身幅と肩幅の連動を切り替える">
+            <img src="連動.png" alt="" />
+          </button>
+          <span>身幅、肩幅を連動させる</span>
+        </div>
+        <div class="control-item" data-control="length">
+          <div class="control-meta">
+            <span>着丈</span>
+            <label><input class="control-value" id="value-length" type="number" min="400" max="5000" step="10" value="700" aria-label="着丈" /> mm</label>
+          </div>
+          <div class="control-track">
+            <input class="control-range" id="range-length" type="range" min="0" max="1000" step="1" value="250" aria-label="着丈スライダー" />
+          </div>
+        </div>
+
+        <div class="control-item" data-control="body">
+          <div class="control-meta">
+            <span>身幅</span>
+            <label><input class="control-value" id="value-body" type="number" min="300" max="5000" step="10" value="520" aria-label="身幅" /> mm</label>
+          </div>
+          <div class="control-track">
+            <input class="control-range" id="range-body" type="range" min="0" max="1000" step="1" value="250" aria-label="身幅スライダー" />
+          </div>
+        </div>
+
+        <div class="control-item" data-control="shoulder">
+          <div class="control-meta">
+            <span>肩幅</span>
+            <label><input class="control-value" id="value-shoulder" type="number" min="340" max="5000" step="10" value="460" aria-label="肩幅" /> mm</label>
+          </div>
+          <div class="control-track">
+            <input class="control-range" id="range-shoulder" type="range" min="0" max="1000" step="1" value="250" aria-label="肩幅スライダー" />
+          </div>
+        </div>
+
+        <div class="control-item" data-control="sleeve">
+          <div class="control-meta">
+            <span>袖丈</span>
+            <label><input class="control-value" id="value-sleeve" type="number" min="0" max="5000" step="10" value="220" aria-label="袖丈" /> mm</label>
+          </div>
+          <div class="control-track">
+            <input class="control-range" id="range-sleeve" type="range" min="0" max="1000" step="1" value="250" aria-label="袖丈スライダー" />
+          </div>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
